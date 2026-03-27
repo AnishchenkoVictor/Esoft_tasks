@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дом на CSS</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #90EE90 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Дом */
+        .house {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Дымоход */
+        .chimney {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(to right, #8B4513, #A0522D, #8B4513);
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 2px solid #654321;
+        }
+
+        /* Крыша (треугольник с помощью border) */
+        .roof {
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 150px solid #8B0000;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Дополнительный слой крыши для объема */
+        .roof::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
+            border-bottom: 140px solid #A52A2A;
+            top: 10px;
+            left: -190px;
+        }
+
+        /* Основание дома (прямоугольник) */
+        .house-base {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(to bottom, #F5DEB3, #DEB887);
+            border: 3px solid #8B7355;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 0;
+        }
+
+        /* Окно (круг) */
+        .window {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #87CEEB;
+            border-radius: 50%;
+            border: 4px solid #4a4a4a;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Рама окна */
+        .window-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #4a4a4a;
+            border-radius: 50%;
+        }
+
+        .window-frame::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: #4a4a4a;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .window-frame::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #4a4a4a;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Дверь */
+        .door {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            border: 3px solid #654321;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 40px 40px 0 0;
+        }
+
+        /* Ручка двери */
+        .door-knob {
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Земля/газон */
+        .ground {
+            width: 600px;
+            height: 100px;
+            background: linear-gradient(to bottom, #228B22, #006400);
+            margin-top: -10px;
+            z-index: 0;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="house">
+            <!-- Дымоход -->
+            <div class="chimney"></div>
+            
+            <!-- Крыша -->
+            <div class="roof"></div>
+            
+            <!-- Основание дома -->
+            <div class="house-base">
+                <!-- Окно -->
+                <div class="window">
+                    <div class="window-frame"></div>
+                </div>
+                
+                <!-- Дверь -->
+                <div class="door">
+                    <div class="door-knob"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Земля/газон -->
+        <div class="ground"></div>
+    </div>
+</body>
+</html>
